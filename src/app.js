@@ -10,8 +10,13 @@ const port = Number(process.env.PORT || 8089)
 const app = express();
 
 const whitelist = [
-  // TODO whitelist
+  'localhost:8081'
 ]
+
+app.use(function (req, res, next) {
+  req.headers.origin = req.headers.origin || req.headers.host;
+  next();
+});
 
 app.use(cors({
   origin: function (origin, callback) {
