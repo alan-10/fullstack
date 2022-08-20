@@ -20,7 +20,6 @@ app.use(function (req, res, next) {
 
 app.use(cors({
   origin: function (origin, callback) {
-    console.log('origin', origin)
     const allowed = whitelist.indexOf(origin) !== -1
     if (allowed) return callback(null, true);
 

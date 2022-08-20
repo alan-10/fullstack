@@ -17,9 +17,7 @@ const getPostByUserIdService = async ({
         throw new Error("Missing author in database")
     }
 
-    const {
-        posts = []
-    } = await getPostByUserIdRepositories({
+    const posts = await getPostByUserIdRepositories({
         user_id
     });
 
