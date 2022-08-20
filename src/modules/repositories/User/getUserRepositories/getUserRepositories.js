@@ -6,11 +6,10 @@ const {
 const getUserRepositories = async ({
     user_id
 } = {}) => {
+    
+    const response = await client('users').where({ id: user_id })
 
-    const {
-        response
-    } = await client('users').where({ id: user_id })
-
+   
     const has_response = Array.isArray(response) && response.length > 0;
 
     if(!has_response){
@@ -19,11 +18,9 @@ const getUserRepositories = async ({
         }
     }
 
-    // return {
-    //     users: response
-    // }
-    return undefined;
-
+    return {
+        users: response
+    }
 }
 
 module.exports = {
