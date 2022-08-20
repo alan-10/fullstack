@@ -18,7 +18,7 @@ const updateUserRepositories = async ({
             user_email,
             user_password,
             full_name
-        })
+        }).where({id})
 
         await commitTransaction({ transaction })
 
