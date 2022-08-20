@@ -19,6 +19,7 @@ const updatePostRepositories = async ({
             post_text
         })
 
+        commitTransaction({ transaction })
 
     } catch (err) {
         rollbackTransaction({ transaction })

@@ -11,8 +11,8 @@ const getPostByPostIdRepositories = async ({
     const { transaction } = await getTransaction();
 
     const response = await transaction('posts').where({ id: post_id })
-
-    const has_response = Array.isArray(response) && response.length === 0;
+   
+    const has_response = Array.isArray(response) && response.length > 0;
 
     if(!has_response){
         return {

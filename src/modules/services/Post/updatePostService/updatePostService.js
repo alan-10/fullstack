@@ -11,8 +11,9 @@ const updatePostService = async ({
     } = await getPostByPostIdRepositories({
         post_id: id
     });
+    
 
-    const has_post = Array.isArray(posts) && posts.length === 1;
+    const has_post = Array.isArray(posts) && posts.length > 0;
 
     if (!has_post) {
         throw new Error("Hasn't post to update")
