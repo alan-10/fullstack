@@ -10,7 +10,7 @@ const port = Number(process.env.PORT || 8089)
 const app = express();
 
 const whitelist = [
-  'localhost:8081'
+  'localhost:8081','http://localhost:8081'
 ]
 
 app.use(function (req, res, next) {
@@ -20,6 +20,7 @@ app.use(function (req, res, next) {
 
 app.use(cors({
   origin: function (origin, callback) {
+    console.log('origin', origin)
     const allowed = whitelist.indexOf(origin) !== -1
     if (allowed) return callback(null, true);
 
