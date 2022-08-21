@@ -8,5 +8,6 @@ module.exports = Object.freeze({
     ...require('./Post/deletePostRepositories/deletePostRepositories'),
     ...require('./Post/getPostByPostIdRepositories/getPostByPostIdRepositories'),
     ...require('./Post/getPostByUserIdRepositories/getPostByUserIdRepositories'),
-    ...require('./Post/updatePostRepositories/updatePostRepositories')
+    ...require('./Post/updatePostRepositories/updatePostRepositories'),
+    ...require('./Post/getAllPostsRepositories/getAllPostsRepositories')
 })
