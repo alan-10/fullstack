@@ -17,7 +17,7 @@ const createUserHandler = async (req, res, next) => {
             full_name
         })
 
-        return res.status(httpStatusCodes.OK).send(created_user);
+        return res.status(httpStatusCodes.CREATED).send(created_user);
     }catch(error){
         return httpErrorHandler({ req, res, error })
     }
