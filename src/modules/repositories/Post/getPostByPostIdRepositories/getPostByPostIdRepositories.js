@@ -1,5 +1,4 @@
 const { 
-    client,
     getTransaction,
 } = require('../../../common/handlers');
 
