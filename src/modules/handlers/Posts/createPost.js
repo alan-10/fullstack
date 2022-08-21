@@ -16,7 +16,7 @@ const createPostHandler = async(req, res, next) => {
             author_id
         })
 
-        return res.status(httpStatusCodes.OK).send(created_post);
+        return res.status(httpStatusCodes.CREATED).send(created_post);
     }catch(error){
         return httpErrorHandler({ req, res, error })
     }
