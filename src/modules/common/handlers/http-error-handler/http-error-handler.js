@@ -8,7 +8,9 @@ const httpErrorHandler = ({ req, res, error }) => {
   const error_id = uuid.v4();
 
   const response = {
-    type: `internal server error (${error_id})`,
+    type:  response_status_code == httpStatusCodes.INTERNAL_SERVER_ERROR 
+    ? `internal server error (${error_id})` 
+    : httpStatusCodes.getStatusText(error.statusCode)+" "+error_id ,
   };
 
   if (!is_internal) {
@@ -17,7 +19,7 @@ const httpErrorHandler = ({ req, res, error }) => {
       details: error.details || error,
     });
   }
-  const error_context = {
+  const error_context = { 
     error: String(error),
     error_id,
     request: {
@@ -32,6 +34,9 @@ const httpErrorHandler = ({ req, res, error }) => {
     response,
     stack: error.stackTrace
   };
+
+
+  
   console.log(JSON.stringify(error_context));
 
   return res.status(response_status_code).json(response).end();

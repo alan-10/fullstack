@@ -1,4 +1,5 @@
 const { getUserRepositories, deleteUserRepositories } = require("../../../repositories");
+const { handleError } = require("../../../../shared/errors/handleError")
 
 const deleteUserService = async ({
     user_id
@@ -13,7 +14,7 @@ const deleteUserService = async ({
     const has_user = Array.isArray(users) && users.length === 1;
 
     if(!has_user){
-        throw new Error("No user to delete")
+        handleError("No user to delete", 404)
     }
 
     const [user_to_delete] = users;

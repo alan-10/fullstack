@@ -1,6 +1,8 @@
 const { getPostByPostIdRepositories,updatePostRepositories } = require("../../../repositories");
 const { getUserByIdService } = require("../../User/getUserByIdService/getUserByIdService");
-  
+const { handleError } = require("../../../../shared/errors/handleError")
+
+
   const updatePostService = async ({
     id,
     author_id,
@@ -17,7 +19,7 @@ const { getUserByIdService } = require("../../User/getUserByIdService/getUserByI
     const has_post = Array.isArray(posts) && posts.length > 0;
   
     if (!has_post) {
-        throw new Error("Hasn't post to update")
+        handleError("Hasn't post to update", 400)
     }
   
     const {
@@ -29,7 +31,7 @@ const { getUserByIdService } = require("../../User/getUserByIdService/getUserByI
     const has_author = Array.isArray(user) && user.length > 0;
     
     if(has_author === false) {
-        throw new Error("Hasn't author in database to update")
+        handleError("Hasn't author in database to update", 400)
     }
 
 
