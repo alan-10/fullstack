@@ -23,9 +23,6 @@ const deleteUserService = async ({
         user_id: user_to_delete.id
     })
 
-    return {
-        deletedUser: user_to_delete
-    };
 }
 
 module.exports = {

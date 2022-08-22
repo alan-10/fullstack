@@ -5,20 +5,18 @@ const { httpErrorHandler } = require("../../common/handlers");
 const { deletePostService } = require('../../services');
 
 const deletePostHandler = async (req, res, next) => {
-    try{
+    try {
 
         const {
             post_id
         } = req.query;
 
-        const {
-            deletedPost
-        } = await deletePostService({
+        await deletePostService({
             post_id
         })
 
-        return res.status(httpStatusCodes.OK).send({deletedPost})
-    }catch(error){
+        return res.status(httpStatusCodes.NO_CONTENT).send()
+    } catch (error) {
         return httpErrorHandler({ req, res, error })
     }
 }

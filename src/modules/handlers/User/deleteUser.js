@@ -11,13 +11,11 @@ const deleteUserHandler = async (req, res, next) => {
             user_id
         } = req.query;
 
-        const {
-            deletedUser
-        } = await deleteUserService({
+        await deleteUserService({
             user_id
         })
 
-        return res.status(httpStatusCodes.OK).send({deletedUser})
+        return res.status(httpStatusCodes.NO_CONTENT).send()
     }catch(error){
         return httpErrorHandler({ req, res, error })
     }

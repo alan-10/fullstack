@@ -24,9 +24,7 @@ const deletePostService = async ({
         post_id: post_to_delete.id
     })
 
-    return {
-        deletedPost: post_to_delete
-    };
+    
 }
 
 module.exports = {
