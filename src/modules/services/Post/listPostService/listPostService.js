@@ -1,5 +1,6 @@
 const { getUserByIdService } = require("../../User/getUserByIdService/getUserByIdService");
 const { getPostByUserIdRepositories, getAllPostsRepositories } = require("../../../repositories");
+const { handleError } = require('../../../../shared/errors/handleError')
 
 const getPostByUserIdService = async ({
     user_id
@@ -25,7 +26,7 @@ const getPostByUserIdService = async ({
     const has_author = Array.isArray(user) && user.length > 0;
 
     if (has_author === false) {
-        throw new Error("Missing author in database")
+        handleError("Missing author in database", 404)
     }
 
     const posts = await getPostByUserIdRepositories({

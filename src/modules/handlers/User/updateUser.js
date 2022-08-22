@@ -18,6 +18,7 @@ const updateUserHandler = async (req, res, next) => {
             user_password,
             full_name
         })
+        
 
         return res.status(httpStatusCodes.OK).send(updated_user);
     }catch(error){

@@ -1,5 +1,6 @@
 const { getUserByIdService } = require("../../User/getUserByIdService/getUserByIdService");
 const { createPostRepositories } = require("../../../repositories");
+const { handleError } = require("../../../../shared/errors/handleError")
 
 const createPostService = async (post) => {
 
@@ -14,9 +15,9 @@ const createPostService = async (post) => {
     })
 
     const has_author = Array.isArray(user) && user.length > 0;
-    
-    if(has_author === false) {
-        throw new Error("Hasn't author in database")
+
+    if (has_author === false) {
+        handleError("Hasn't author in database", 400)
     }
 
     const {
@@ -27,10 +28,10 @@ const createPostService = async (post) => {
 
     const has_post_created = Array.isArray(post_created) && post_created.length > 0;
 
-    if(has_post_created === false){
+    if (has_post_created === false) {
         return {
             post_created_id: []
-        }  
+        }
     }
 
     return {

@@ -1,4 +1,6 @@
 const { getPostByPostIdRepositories, deletePostRepositories } = require("../../../repositories");
+const { handleError } =  require("../../../../shared/errors/handleError")
+
 
 const deletePostService = async ({
     post_id
@@ -13,7 +15,7 @@ const deletePostService = async ({
     const has_post = Array.isArray(posts) && posts.length > 0;
 
     if(!has_post){
-        throw new Error("Hasn't post to delete")
+        handleError("Hasn't post to delete", 404)
     }
 
     const [post_to_delete] = posts;

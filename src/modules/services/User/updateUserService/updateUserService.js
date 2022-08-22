@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const { getUserRepositories, updateUserRepositories } = require("../../../repositories");
+const { handleError } = require("../../../../shared/errors/handleError")
 
 const updateUserService = async ({
     id,
@@ -18,7 +19,7 @@ const updateUserService = async ({
     const has_user = Array.isArray(users) && users.length === 1;
 
     if (!has_user) {
-        throw new Error("Missing user to update")
+        handleError("Missing user to update", 404)
     }
 
     const [user_to_update] = users;
