@@ -16,15 +16,14 @@ const updateUserService = async ({
         user_id: id
     });
 
-    const has_user = Array.isArray(users) && users.length === 1;
+    const has_user = Array.isArray(users) && users.length > 0;
 
     if (!has_user) {
-        handleError("Missing user to update", 404)
+        handleError("Missing user in database", 404)
     }
 
-    const [user_to_update] = users;
 
-    const crypt_password = bcrypt.hashSync(user_to_update.user_password, salt);
+    const crypt_password = bcrypt.hashSync(user_password, salt);
 
     await updateUserRepositories({
         id,
@@ -37,7 +36,6 @@ const updateUserService = async ({
         updatedUser: {
             id,
             user_email,
-            user_password,
             full_name
         }
     };
