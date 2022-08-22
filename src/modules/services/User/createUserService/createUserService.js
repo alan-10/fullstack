@@ -1,10 +1,18 @@
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const { createUserRepositories } = require("../../../repositories");
+const { handleError } =  require("../../../../shared/errors/handleError");
 
 const createUserService = async (user) => {
 
     const crypt_password = bcrypt.hashSync(user.user_password, salt);
+
+     if(
+        user.user_password.trim() === ''
+        || user.user_email.trim() === ''
+     ){
+        handleError("user_password and user_email are required", 400)
+     }
 
     const {
         user_created
