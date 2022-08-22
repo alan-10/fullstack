@@ -10,6 +10,13 @@ const updateUserService = async ({
     full_name
 }) => {
 
+    if(
+        user_password.trim() === ''
+        || user_email.trim() === ''
+     ){
+        handleError("user_password and user_email are required", 400)
+     }
+
     const {
         users = []
     } = await getUserRepositories({
