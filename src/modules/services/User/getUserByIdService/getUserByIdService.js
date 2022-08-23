@@ -1,4 +1,4 @@
-const { request } = require("express");
+
 const { getUserRepositories } = require("../../../repositories");
 const { handleError } = require("../../../../shared/errors/handleError");
 

@@ -1,5 +1,4 @@
-const { getPostByPostIdRepositories,updatePostRepositories } = require("../../../repositories");
-const { getUserByIdService } = require("../../User/getUserByIdService/getUserByIdService");
+const { getPostByPostIdRepositories,updatePostRepositories , getUserRepositories} = require("../../../repositories");
 const { handleError } = require("../../../../shared/errors/handleError")
 
 
@@ -23,14 +22,15 @@ const { handleError } = require("../../../../shared/errors/handleError")
     }
   
     const {
-        user
-    } = await getUserByIdService({
-        user_id: author_id
-    })
+        users 
+    } = await getUserRepositories({
+        user_id:author_id
+    });
 
-    const has_author = Array.isArray(user) && user.length > 0;
+
+    const has_author = Array.isArray(users) && users.length > 0;
     
-    if(has_author === false) {
+    if(!has_author) {
         handleError("Hasn't author in database to update", 400)
     }
 
